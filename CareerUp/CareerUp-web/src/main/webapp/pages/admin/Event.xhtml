@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+template="/template/template.xhtml">
+<ui:param name="page_name" value="Accueil" />
+<ui:define name="content">
+
+
+<h:panelGroup columns="2"><h:form enctype="multipart/form-data"><table>
+<tr><td><input type="file" name="upload-pic[]" id="upload-pic" class="inputfile" />
+								<label for="upload-pic"><i class="fa fa-upload" aria-hidden="true"></i><span></span></label></td>
+<td><h:inputFile value="#{eventBean.logo}"></h:inputFile></td></tr>
+<tr><td><h:outputText value="Name"></h:outputText></td><td><h:inputText
+value="#{eventBean.nameEvent}"></h:inputText></td></tr>
+<tr><td><h:outputText value="Description"></h:outputText></td>
+<td><h:inputText value="#{eventBean.description}"></h:inputText></td></tr>
+<tr><td><h:outputText value="Lieu"></h:outputText></td>
+<td><h:inputText value="#{eventBean.lieu}"></h:inputText></td></tr>
+<tr><td><h:outputText value="Date"></h:outputText></td>
+<td><h:inputText value="#{eventBean.eventDate}"><f:convertDateTime type="date" pattern="dd-MM-yyyy" />  </h:inputText></td></tr>
+
+
+<tr><td colspan="2"> <h:commandLink value="Ajouter User" 
+actionListener="#{eventBean.addEvent()}" />
+<h:commandButton value="Mettre A jour"
+action="#" />
+</td></tr>
+</table></h:form></h:panelGroup>
+
+<h:panelGroup columns="2">
+<h:form>
+<h:dataTable value="#{eventBean.events}" var="event" border="1">
+<h:column><f:facet name="header"><h:outputText value="Name" /></f:facet>
+<h:outputText value="#{event.nameEvent}" /></h:column>
+<h:column><f:facet name="header"><h:outputText value="Description" /></f:facet>
+<h:outputText value="#{event.description}" /></h:column>
+<h:column><f:facet name="header"><h:outputText value="Date" /></f:facet>
+<h:outputText value="#{event.eventDate}" /></h:column>
+<h:column><f:facet name="header"><h:outputText value="Logo" /></f:facet>
+<h:outputText value="#{event.logo}" /></h:column>
+<h:column><f:facet name="header"><h:outputText value="Lieu" /></f:facet>
+<h:outputText value="#{event.lieu}" /></h:column>
+
+
+<h:column>
+<f:facet name="header"><h:outputText value="Action" /></f:facet>
+<h:commandButton action="#" 
+value="Supprimer" />
+<h:commandButton action="#"
+value="Afficher" />
+</h:column>
+
+</h:dataTable>
+</h:form>
+</h:panelGroup>
+
+
+</ui:define>
+</ui:composition>
